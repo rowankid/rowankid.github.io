@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="title: 自动凑发票date: 2018-11-22 17:25:42tags: 使用说明： 用于找一堆发票中，能凑出指定金额的发票。 比如需要凑500的发票，510以内的发票都可以，则目标写500，向上差距写10。向下请从目标减~ 随便写的，不求美观，只求实用。           var l = [];          var index = 0;          function g">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://yoursite.com/2019/04/17/自动凑发票/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="title: 自动凑发票date: 2018-11-22 17:25:42tags: 使用说明： 用于找一堆发票中，能凑出指定金额的发票。 比如需要凑500的发票，510以内的发票都可以，则目标写500，向上差距写10。向下请从目标减~ 随便写的，不求美观，只求实用。           var l = [];          var index = 0;          function g">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-04-17T03:17:53.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hexo">
+<meta name="twitter:description" content="title: 自动凑发票date: 2018-11-22 17:25:42tags: 使用说明： 用于找一堆发票中，能凑出指定金额的发票。 比如需要凑500的发票，510以内的发票都可以，则目标写500，向上差距写10。向下请从目标减~ 随便写的，不求美观，只求实用。           var l = [];          var index = 0;          function g">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-自动凑发票" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/04/17/自动凑发票/" class="article-date">
+  <time datetime="2019-04-17T03:17:03.000Z" itemprop="datePublished">2019-04-17</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>title: 自动凑发票<br>date: 2018-11-22 17:25:42<br>tags:</p>
+<p>使用说明：</p>
+<p>用于找一堆发票中，能凑出指定金额的发票。</p>
+<p>比如需要凑500的发票，510以内的发票都可以，则目标写500，向上差距写10。向下请从目标减~</p>
+<pre><code>随便写的，不求美观，只求实用。
+</code></pre><script type="text/javascript">
+
+        var l = [];
+
+        var index = 0;
+
+        function getFapiao(fapiaos,target,chaju){
+
+            var visited = [];
+
+            for(i=0;i<fapiaos.length;i++){
+
+                visited[i]=false;
+
+            }
+
+            getSubSet(visited,fapiaos,target,0,chaju);
+
+        }
+
+        function getSubSet(visited,fapiaos,target,step,chaju){
+
+            if (step == fapiaos.length) {
+                var temp =getSum(visited, fapiaos);
+                if ((temp<=(Number(target)+Number(chaju)))&& temp>=Number(target)) {
+                    var i= 0;
+                    l[index]=" SUM:"+temp+",detail:";index++;
+                    for (; i<fapiaos.length; i++) {
+                        if(visited[i]) {l[index]=fapiaos[i];index++;};
+                    }
+                    l[index]="||||";
+                    index++;
+                }
+                return l;
+            }
+            visited[step] = true;
+     getSubSet(visited, fapiaos, target, step + 1,chaju);
+            visited[step] = false;
+    getSubSet(visited, fapiaos, target, step + 1,chaju);
+        }
+        function getSum(visited,fapiaos) {
+            var sum = 0;
+            var i= 0;
+            for (; i<fapiaos.length; i++) {
+                if (visited[i])
+                    sum = Number(fapiaos[i])+Number(sum);
+            }
+            return sum;
+        }
+
+        document.addEventListener("readystatechange", function (e) {
+            if (this.readyState === "complete") {
+                var cbe = document.getElementById("computeButton");
+                var fapiaos = document.getElementById("fapiaos");
+                var chaju = document.getElementById("chaju");
+
+                var target = document.getElementById("target");
+
+                var resultDivElement = document.getElementById("resultDiv");
+                cbe.addEventListener("click", (e) => {
+                    l=[];
+                    index=0;
+                    var p1 = fapiaos.value;
+                    var p2 = target.value;
+                    var p3 = chaju.value;
+
+                var code = getFapiao(p1.replace(" ","").split(","),p2,p3);
+                // while (code.indexOf("\r\n") > -1)
+                //     code = code.replace("\r\n", "l<br/>");
+                resultDivElement.innerHTML = l;
+            });
+            }
+        });
+    </script>
+
+<div><br><br>    <div style="margin-top:10px;padding-top:0px"><br><br>        <label for="fapiaos">发票，英文逗号分隔</label><br><br>        <textarea id="fapiaos" type="textarea">200,376,169,171,176,88.5,82.5,68,125</textarea><br><br>    </div>
+
+<pre><code>&lt;div style=&quot;margin-top:10px;padding-top:0px&quot;&gt;
+
+    &lt;label for=&quot;chaju&quot;&gt;向上差距(比如500的发票，500~510以内都可以)&lt;/label&gt;
+
+    &lt;input id=&quot;chaju&quot; type=&quot;number&quot; value=&quot;10&quot;/&gt;
+
+&lt;/div&gt;
+
+&lt;div&gt;
+
+    &lt;label for=&quot;target&quot;&gt;目标 &lt;/label&gt;
+
+    &lt;input id=&quot;target&quot; type=&quot;number&quot; value=&quot;500&quot;/&gt;
+
+&lt;/div&gt;
+
+&lt;div&gt;
+
+    &lt;input id=&quot;computeButton&quot; type=&quot;button&quot; value=&quot;开始凑票&quot;/&gt;
+
+&lt;/div&gt;
+</code></pre><p></p></div><p></p>
+<div id="resultDiv" style="font-family:Consolas,'Lucida Console',monospace;margin-top:20px;padding:1em;border:dashed;border-width:medium;border-collapse:collapse"><br><br></div>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/04/17/自动凑发票/" data-id="cjuknsvzk0000jitrhm1dmdyv" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2019/04/17/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Hello World</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/04/17/自动凑发票/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/17/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
