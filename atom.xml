@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>高效不止属于程序员</title>
+  
+  
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://blog.luowq.cn/"/>
+  <updated>2019-04-17T03:10:55.000Z</updated>
+  <id>http://blog.luowq.cn/</id>
+  
+  <author>
+    <name>Rowan</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="http://blog.luowq.cn/2019/04/17/hello-world/"/>
+    <id>http://blog.luowq.cn/2019/04/17/hello-world/</id>
+    <published>2019-04-17T03:10:55.000Z</published>
+    <updated>2019-04-17T03:10:55.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>自动凑发票</title>
+    <link href="http://blog.luowq.cn/2018/11/22/%E8%87%AA%E5%8A%A8%E5%87%91%E5%8F%91%E7%A5%A8/"/>
+    <id>http://blog.luowq.cn/2018/11/22/自动凑发票/</id>
+    <published>2018-11-22T09:25:42.000Z</published>
+    <updated>2019-04-17T06:22:52.000Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>使用说明：<br>用于找一堆发票中，能凑出指定金额的发票。<br>比如需要凑500的发票，510以内的发票都可以，则目标写500，向上差距写10。向下请从目标减~<br>    随便写的，不求美观，只求实用。</p></blockquote><script type="text/javascript">        var l = [];        var index = 0;        function getFapiao(fapiaos,target,chaju){            var visited = [];            for(i=0;i<fapiaos.length;i++){                visited[i]=false;            }            getSubSet(visited,fapiaos,target,0,chaju);        }        function getSubSet(visited,fapiaos,target,step,chaju){            if (step == fapiaos.length) {                var temp =getSum(visited, fapiaos);                if ((temp<=(Number(target)+Number(chaju)))&& temp>=Number(target)) {                    var i= 0;                    l[index]=" SUM:"+temp+",detail:";index++;                    for (; i<fapiaos.length; i++) {                        if(visited[i]) {l[index]=fapiaos[i];index++;};                    }                    l[index]="||||";                    index++;                }                return l;            }            visited[step] = true;     getSubSet(visited, fapiaos, target, step + 1,chaju);            visited[step] = false;    getSubSet(visited, fapiaos, target, step + 1,chaju);        }        function getSum(visited,fapiaos) {            var sum = 0;            var i= 0;            for (; i<fapiaos.length; i++) {                if (visited[i])                    sum = Number(fapiaos[i])+Number(sum);            }            return sum;        }        document.addEventListener("readystatechange", function (e) {            if (this.readyState === "complete") {                var cbe = document.getElementById("computeButton");                var fapiaos = document.getElementById("fapiaos");                var chaju = document.getElementById("chaju");                var target = document.getElementById("target");                var resultDivElement = document.getElementById("resultDiv");                cbe.addEventListener("click", (e) => {                    l=[];                    index=0;                    var p1 = fapiaos.value;                    var p2 = target.value;                    var p3 = chaju.value;                var code = getFapiao(p1.replace(" ","").split(","),p2,p3);                // while (code.indexOf("\r\n") > -1)                //     code = code.replace("\r\n", "l<br/>");                resultDivElement.innerHTML = l;            });            }        });    </script><div><br>    <div style="margin-top:10px;padding-top:0px"><br>        <label for="fapiaos">发票，英文逗号分隔</label><br>        <textarea id="fapiaos" type="textarea">200,376,169,171,176,88.5,82.5,68,125</textarea><br>    </div><br>    <div style="margin-top:10px;padding-top:0px"><br>        <label for="chaju">向上差距(比如500的发票，500~510以内都可以)</label><br>        <input id="chaju" type="number" value="10"><br>    </div><br>    <div><br>        <label for="target">目标 </label><br>        <input id="target" type="number" value="500"><br>    </div><br>    <div><br>        <input id="computeButton" type="button" value="开始凑票"><br>    </div><br></div><br><div id="resultDiv" style="font-family:Consolas,'Lucida Console',monospace;margin-top:20px;padding:1em;border:dashed;border-width:medium;border-collapse:collapse"><br><br></div>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;blockquote&gt;
+&lt;p&gt;使用说明：&lt;br&gt;用于找一堆发票中，能凑出指定金额的发票。&lt;br&gt;比如需要凑500的发票，510以内的发票都可以，则目标写500，向上差距写10。向下请从目标减~&lt;br&gt;    随便写的，不求美观，只求实用。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+</feed>
