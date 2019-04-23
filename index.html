@@ -289,6 +289,151 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.luowq.cn/2019/04/23/ImageIO解析TIF转为JPEG/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Rowan">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="高效不只属于程序员">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/04/23/ImageIO解析TIF转为JPEG/" class="post-title-link" itemprop="url">ImageIO解析TIF转为JPEG</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-04-23 11:35:09 / Modified: 12:07:24" itemprop="dateCreated datePublished" datetime="2019-04-23T11:35:09+08:00">2019-04-23</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span>&#123;</span><br><span class="line">IIORegistry registry = IIORegistry.getDefaultInstance();</span><br><span class="line">registry.registerServiceProvider(<span class="keyword">new</span> com.sun.media.imageioimpl.plugins.tiff.TIFFImageWriterspi());</span><br><span class="line">registry.registerServiceProvider(<span class="keyword">new</span> com.sun.media.imageioimpl.plugins.tiff.TIFFImageReaderspi();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>另一种方式，META-INF/service下已经有了服务注册的信息，没有注册上是由于maven打包的时候使用覆盖的方式，有重名的文件会覆盖。使用maven插件可以避免此问题。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">plugin</span>&gt;</span>				</span><br><span class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.maven.plugins<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-shade-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">version</span>&gt;</span>2.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">executions</span>&gt;</span></span><br><span class="line">					<span class="tag">&lt;<span class="name">execution</span>&gt;</span></span><br><span class="line">						<span class="tag">&lt;<span class="name">phase</span>&gt;</span>package<span class="tag">&lt;/<span class="name">phase</span>&gt;</span></span><br><span class="line">						<span class="tag">&lt;<span class="name">goals</span>&gt;</span></span><br><span class="line">							<span class="tag">&lt;<span class="name">goal</span>&gt;</span>shade<span class="tag">&lt;/<span class="name">goal</span>&gt;</span></span><br><span class="line">						<span class="tag">&lt;/<span class="name">goals</span>&gt;</span></span><br><span class="line">						<span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">							<span class="tag">&lt;<span class="name">transformers</span>&gt;</span></span><br><span class="line">							    <span class="tag">&lt;<span class="name">transformer</span></span></span><br><span class="line"><span class="tag">							<span class="attr">implementation</span>=<span class="string">"org.apache.maven.plugins.shade.resource.AppendingTransformer"</span>&gt;</span></span><br><span class="line">									<span class="tag">&lt;<span class="name">resource</span>&gt;</span>META-INF/services/javax.imageio.spi.ImageReaderSpi<span class="tag">&lt;/<span class="name">resource</span>&gt;</span></span><br><span class="line">								<span class="tag">&lt;/<span class="name">transformer</span>&gt;</span></span><br><span class="line">							<span class="tag">&lt;/<span class="name">transformers</span>&gt;</span></span><br><span class="line">						<span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line">					<span class="tag">&lt;/<span class="name">execution</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;/<span class="name">executions</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://blog.luowq.cn/2019/04/17/Mac软件-NewFileMenu使用心得/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -690,7 +835,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">2</span>
+                    <span class="site-state-item-count">3</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -707,7 +852,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">1</span>
+                      
+                    
+                    <span class="site-state-item-count">2</span>
                     <span class="site-state-item-name">tags</span>
                   
                 </div>
