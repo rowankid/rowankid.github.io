@@ -96,18 +96,18 @@
 
 
 
-  <meta name="description" content="12345static&amp;#123;IIORegistry registry = IIORegistry.getDefaultInstance();registry.registerServiceProvider(new com.sun.media.imageioimpl.plugins.tiff.TIFFImageWriterspi());registry.registerServiceProvi">
-<meta name="keywords" content="maven,Java,ImageIO">
+  <meta name="description" content="安装正常的oracle11g启动是会报ora-01033的错误； 123ssh~:lsnrctl startssh~:sqlplus / as sysdbasql~:startup 网上提供了很多方法都是错误的。 启动后再执行如下指令，方可启动。 1alter pluggable database all open;">
+<meta name="keywords" content="oracle,Linux">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ImageIO解析TIF转为JPEG">
-<meta property="og:url" content="http://blog.luowq.cn/2019/04/23/ImageIO解析TIF转为JPEG/index.html">
+<meta property="og:title" content="oracle12g 启动数据库 ora-01033">
+<meta property="og:url" content="http://blog.luowq.cn/2019/04/24/oracle12g启动数据库/index.html">
 <meta property="og:site_name" content="高效不只属于程序员">
-<meta property="og:description" content="12345static&amp;#123;IIORegistry registry = IIORegistry.getDefaultInstance();registry.registerServiceProvider(new com.sun.media.imageioimpl.plugins.tiff.TIFFImageWriterspi());registry.registerServiceProvi">
+<meta property="og:description" content="安装正常的oracle11g启动是会报ora-01033的错误； 123ssh~:lsnrctl startssh~:sqlplus / as sysdbasql~:startup 网上提供了很多方法都是错误的。 启动后再执行如下指令，方可启动。 1alter pluggable database all open;">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-23T04:07:24.000Z">
+<meta property="og:updated_time" content="2019-04-24T02:46:34.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ImageIO解析TIF转为JPEG">
-<meta name="twitter:description" content="12345static&amp;#123;IIORegistry registry = IIORegistry.getDefaultInstance();registry.registerServiceProvider(new com.sun.media.imageioimpl.plugins.tiff.TIFFImageWriterspi());registry.registerServiceProvi">
+<meta name="twitter:title" content="oracle12g 启动数据库 ora-01033">
+<meta name="twitter:description" content="安装正常的oracle11g启动是会报ora-01033的错误； 123ssh~:lsnrctl startssh~:sqlplus / as sysdbasql~:startup 网上提供了很多方法都是错误的。 启动后再执行如下指令，方可启动。 1alter pluggable database all open;">
 
 
 
@@ -117,7 +117,7 @@
 
   
   
-  <link rel="canonical" href="http://blog.luowq.cn/2019/04/23/ImageIO解析TIF转为JPEG/">
+  <link rel="canonical" href="http://blog.luowq.cn/2019/04/24/oracle12g启动数据库/">
 
 
 
@@ -127,7 +127,7 @@
   };
 </script>
 
-  <title>ImageIO解析TIF转为JPEG | 高效不只属于程序员</title>
+  <title>oracle12g 启动数据库 ora-01033 | 高效不只属于程序员</title>
   
 
 
@@ -293,7 +293,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.luowq.cn/2019/04/23/ImageIO解析TIF转为JPEG/">
+    <link itemprop="mainEntityOfPage" href="http://blog.luowq.cn/2019/04/24/oracle12g启动数据库/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Rowan">
@@ -310,7 +310,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">ImageIO解析TIF转为JPEG
+          <h2 class="post-title" itemprop="name headline">oracle12g 启动数据库 ora-01033
 
               
             
@@ -336,7 +336,7 @@
                 
               
 
-              <time title="Created: 2019-04-23 11:35:09 / Modified: 12:07:24" itemprop="dateCreated datePublished" datetime="2019-04-23T11:35:09+08:00">2019-04-23</time>
+              <time title="Created: 2019-04-24 10:28:34 / Modified: 10:46:34" itemprop="dateCreated datePublished" datetime="2019-04-24T10:28:34+08:00">2019-04-24</time>
             
 
             
@@ -375,9 +375,11 @@
       
 
       
-        <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span>&#123;</span><br><span class="line">IIORegistry registry = IIORegistry.getDefaultInstance();</span><br><span class="line">registry.registerServiceProvider(<span class="keyword">new</span> com.sun.media.imageioimpl.plugins.tiff.TIFFImageWriterspi());</span><br><span class="line">registry.registerServiceProvider(<span class="keyword">new</span> com.sun.media.imageioimpl.plugins.tiff.TIFFImageReaderspi();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>另一种方式，META-INF/service下已经有了服务注册的信息，没有注册上是由于maven打包的时候使用覆盖的方式，有重名的文件会覆盖。使用maven插件可以避免此问题。</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">plugin</span>&gt;</span>				</span><br><span class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.maven.plugins<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-shade-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">version</span>&gt;</span>2.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">executions</span>&gt;</span></span><br><span class="line">					<span class="tag">&lt;<span class="name">execution</span>&gt;</span></span><br><span class="line">						<span class="tag">&lt;<span class="name">phase</span>&gt;</span>package<span class="tag">&lt;/<span class="name">phase</span>&gt;</span></span><br><span class="line">						<span class="tag">&lt;<span class="name">goals</span>&gt;</span></span><br><span class="line">							<span class="tag">&lt;<span class="name">goal</span>&gt;</span>shade<span class="tag">&lt;/<span class="name">goal</span>&gt;</span></span><br><span class="line">						<span class="tag">&lt;/<span class="name">goals</span>&gt;</span></span><br><span class="line">						<span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">							<span class="tag">&lt;<span class="name">transformers</span>&gt;</span></span><br><span class="line">							    <span class="tag">&lt;<span class="name">transformer</span></span></span><br><span class="line"><span class="tag">							<span class="attr">implementation</span>=<span class="string">"org.apache.maven.plugins.shade.resource.AppendingTransformer"</span>&gt;</span></span><br><span class="line">									<span class="tag">&lt;<span class="name">resource</span>&gt;</span>META-INF/services/javax.imageio.spi.ImageReaderSpi<span class="tag">&lt;/<span class="name">resource</span>&gt;</span></span><br><span class="line">								<span class="tag">&lt;/<span class="name">transformer</span>&gt;</span></span><br><span class="line">							<span class="tag">&lt;/<span class="name">transformers</span>&gt;</span></span><br><span class="line">						<span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line">					<span class="tag">&lt;/<span class="name">execution</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;/<span class="name">executions</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br></pre></td></tr></table></figure>
+        <p>安装正常的oracle11g启动是会报ora-01033的错误；</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ssh~:lsnrctl start</span><br><span class="line">ssh~:sqlplus / as sysdba</span><br><span class="line">sql~:startup</span><br></pre></td></tr></table></figure>
+<p>网上提供了很多方法都是错误的。</p>
+<p>启动后再执行如下指令，方可启动。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter pluggable database all open;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -401,7 +403,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/maven-Java-ImageIO/" rel="tag"># maven,Java,ImageIO</a>
+            <a href="/tags/oracle-Linux/" rel="tag"># oracle,Linux</a>
           
         </div>
       
@@ -414,8 +416,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/04/17/Mac软件-NewFileMenu使用心得/" rel="next" title="Mac软件 NewFileMenu使用心得">
-                <i class="fa fa-chevron-left"></i> Mac软件 NewFileMenu使用心得
+              <a href="/2019/04/23/ImageIO解析TIF转为JPEG/" rel="next" title="ImageIO解析TIF转为JPEG">
+                <i class="fa fa-chevron-left"></i> ImageIO解析TIF转为JPEG
               </a>
             
           </div>
@@ -423,10 +425,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/04/24/oracle12g启动数据库/" rel="prev" title="oracle12g 启动数据库 ora-01033">
-                oracle12g 启动数据库 ora-01033 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>

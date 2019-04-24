@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.luowq.cn/"/>
-  <updated>2019-04-23T04:07:24.000Z</updated>
+  <updated>2019-04-24T02:46:34.000Z</updated>
   <id>http://blog.luowq.cn/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>oracle12g 启动数据库 ora-01033</title>
+    <link href="http://blog.luowq.cn/2019/04/24/oracle12g%E5%90%AF%E5%8A%A8%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    <id>http://blog.luowq.cn/2019/04/24/oracle12g启动数据库/</id>
+    <published>2019-04-24T02:28:34.000Z</published>
+    <updated>2019-04-24T02:46:34.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>安装正常的oracle11g启动是会报ora-01033的错误；</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ssh~:lsnrctl start</span><br><span class="line">ssh~:sqlplus / as sysdba</span><br><span class="line">sql~:startup</span><br></pre></td></tr></table></figure><p>网上提供了很多方法都是错误的。</p><p>启动后再执行如下指令，方可启动。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter pluggable database all open;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;安装正常的oracle11g启动是会报ora-01033的错误；&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;s
+      
+    
+    </summary>
+    
+    
+      <category term="oracle,Linux" scheme="http://blog.luowq.cn/tags/oracle-Linux/"/>
+    
+  </entry>
   
   <entry>
     <title>ImageIO解析TIF转为JPEG</title>
